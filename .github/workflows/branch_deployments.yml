@@ -14,6 +14,7 @@ env:
   PYTHON_VERSION: '3.10'
   DAGSTER_CLOUD_FILE: 'dagster_cloud.yaml'
  DBT_TARGET: 'prod'
+ DUCKDB_TOKEN: ${{ secrets.DUCKDB_TOKEN }}
 
 jobs:
   dagster_cloud_default_deploy:
