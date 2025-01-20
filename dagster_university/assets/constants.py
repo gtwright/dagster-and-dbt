@@ -1,7 +1,6 @@
 import os
 
-S3_BUCKET_PREFIX = os.getenv("S3_BUCKET_PREFIX", "s3://dagster-university/")
-
+S3_BUCKET_PREFIX = os.getenv("S3_BUCKET_PREFIX", "s3://dagster-gtw/")
 
 def get_path_for_env(path: str) -> str:
     """A utility method for Dagster University. Generates a path based on the environment.
@@ -17,9 +16,6 @@ def get_path_for_env(path: str) -> str:
     else:
         return path
 
-
-TAXI_ZONES_FILE_PATH = get_path_for_env("data/raw/taxi_zones.csv")
-TAXI_TRIPS_TEMPLATE_FILE_PATH = get_path_for_env("data/raw/taxi_trips_{}.parquet")
 
 TAXI_ZONES_FILE_PATH = get_path_for_env(os.path.join("data", "raw", "taxi_zones.csv"))
 TAXI_TRIPS_TEMPLATE_FILE_PATH = get_path_for_env(
