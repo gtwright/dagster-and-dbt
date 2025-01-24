@@ -7,6 +7,8 @@ setup(
         "dagster==1.9.*",
         "dagster-cloud",
         "dagster-duckdb",
+        "dagster-snowflake",
+        "dagster-snowflake-pandas",
         "dagster-dbt",
         "dbt-duckdb",
         "geopandas",
