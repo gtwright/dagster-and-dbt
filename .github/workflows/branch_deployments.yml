@@ -1,4 +1,4 @@
-name: Serverless Branch Deployments
+name: Dagster Cloud Branch Deployments
 on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
@@ -27,6 +27,10 @@ jobs:
   dagster_cloud_default_deploy:
     name: Dagster Serverless Deploy
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     outputs:
       build_info: ${{ steps.parse-workspace.outputs.build_info }}
 
