@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    database: dev
+    schema: dev
+    # database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+    # schema: "{{ generate_schema_name('main', node) }}"
+    tables:
+      - name: taxi_trips
+        description: Raw trips data
+      - name: taxi_zones
+        description: Raw taxi zones data

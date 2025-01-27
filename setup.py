@@ -11,6 +11,7 @@ setup(
         "dagster-snowflake-pandas",
         "dagster-dbt",
         "dbt-duckdb",
+        "dbt-snowflake",
         "geopandas",
         "kaleido",
         "pandas[parquet]",

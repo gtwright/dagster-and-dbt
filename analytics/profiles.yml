@@ -2,8 +2,22 @@ dagster_dbt_university:
   target: dev
   outputs:
     dev:
-      type: duckdb
-      path: '../{{ env_var("DUCKDB_DATABASE", "data/staging/data.duckdb") }}'
+      type: snowflake
+      schema: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      role: "{{ env_var('SNOWFLAKE_ROLE') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE') }}"
+      threads: 8
     prod:
-      type: duckdb
-      path: '{{ env_var("DUCKDB_DATABASE", "") }}'
+      type: snowflake
+      schema: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      role: "{{ env_var('SNOWFLAKE_ROLE') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE') }}"
+      threads: 8

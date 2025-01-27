@@ -1,7 +1,7 @@
 with
     raw_trips as (
         select *
-        from {{ source('raw_taxis', 'trips') }}
+        from {{ source('raw', 'taxi_trips') }}
     )
 select
     {{

@@ -19,16 +19,19 @@ from . import constants
 )
 def taxi_zones_file() -> MaterializeResult:
     """The raw CSV file for the taxi zones dataset. Sourced from the NYC Open Data portal."""
-    raw_taxi_zones = requests.get(
-        "https://data.cityofnewyork.us/api/views/755u-8jsi/rows.csv?accessType=DOWNLOAD"
-    )
+    # raw_taxi_zones = requests.get(
+    #     "https://data.cityofnewyork.us/api/views/755u-8jsi/rows.csv?accessType=DOWNLOAD"
+    # )
 
-    with open(
-        constants.TAXI_ZONES_FILE_PATH, "wb", transport_params=smart_open_config
-    ) as output_file:
-        output_file.write(raw_taxi_zones.content)
+    # with open(
+    #     constants.TAXI_ZONES_FILE_PATH, "wb", transport_params=smart_open_config
+    # ) as output_file:
+    #     output_file.write(raw_taxi_zones.content)
 
-    num_rows = len(pd.read_csv(BytesIO(raw_taxi_zones.content)))
+    with open("data/raw/taxi_zones.csv", 'rb') as file:
+        raw_zones = file.read()
+
+    num_rows = len(pd.read_csv(BytesIO(raw_zones)))
     return MaterializeResult(metadata={"Number of records": MetadataValue.int(num_rows)})
 
 
