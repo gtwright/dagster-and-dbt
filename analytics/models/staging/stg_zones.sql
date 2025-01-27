@@ -1,6 +1,6 @@
 with raw_zones as (
     select *
-    from {{ source('raw_taxis', 'zones') }}
+    from {{ source('raw', 'taxi_zones') }}
 )
 select
     zone_id,

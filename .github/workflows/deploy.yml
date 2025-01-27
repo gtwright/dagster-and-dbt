@@ -1,4 +1,4 @@
-name: Serverless Prod Deployment
+name: Dagster Cloud Prod Deployment
 on:
   push:
     branches:
@@ -18,11 +18,22 @@ env:
   DBT_TARGET: 'prod'
   DAGSTER_ENVIRONMENT: 'prod'
   DUCKDB_DATABASE: ${{ secrets.DUCKDB_DATABASE }}
+  SNOWFLAKE_ACCOUNT:  ${{ vars.SNOWFLAKE_ACCOUNT }}
+  SNOWFLAKE_DATABASE: ${{ vars.SNOWFLAKE_DATABASE }}
+  SNOWFLAKE_SCHEMA: ${{ vars.SNOWFLAKE_SCHEMA }}
+  SNOWFLAKE_USER: ${{ vars.SNOWFLAKE_USER }}
+  SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+  SNOWFLAKE_WAREHOUSE: ${{ vars.SNOWFLAKE_WAREHOUSE }}
+  SNOWFLAKE_ROLE: ${{ vars.SNOWFLAKE_ROLE }}
 
 jobs:
   dagster_cloud_default_deploy:
     name: Dagster Serverless Deploy
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     outputs:
       build_info: ${{ steps.parse-workspace.outputs.build_info }}
 
@@ -85,7 +96,7 @@ jobs:
           location: ${{ toJson(matrix.location) }}
           base_image: "python:${{ env.PYTHON_VERSION }}-slim"
           # Uncomment to pass through Github Action secrets as a JSON string of key-value pairs
-          # env_vars: ${{ toJson(secrets) }}
+          env_vars: ${{ toJson(secrets) }}
           organization_id: ${{ secrets.ORGANIZATION_ID }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

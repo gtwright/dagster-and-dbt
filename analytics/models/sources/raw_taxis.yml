@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: raw_taxis
-    schema: main
+    schema: dev
     tables:
-      - name: zones
-      - name: trips
+      - name: taxi_zones
+      - name: taxi_trips
